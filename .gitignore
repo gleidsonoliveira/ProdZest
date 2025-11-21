@@ -3,3 +3,10 @@
 ################################################################################
 
 /src/ProdZest.Api/.vs/ProdZest.Api
+/src/ProdZest.Api/ProdZest.Api.CrossCutting/bin/Debug/net6.0
+/src/ProdZest.Api/ProdZest.Api.CrossCutting/obj
+/src/ProdZest.Api/ProdZest.Api.Data/bin/Debug/net6.0
+/src/ProdZest.Api/ProdZest.Api.Data/obj
+/src/ProdZest.Api/ProdZest.Api.Domain/bin/Debug/net6.0
+/src/ProdZest.Api/ProdZest.Api.Domain/obj
+/src/ProdZest.Api/ProdZest.Api.Service/obj
