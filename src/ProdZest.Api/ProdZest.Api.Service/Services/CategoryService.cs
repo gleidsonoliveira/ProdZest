@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using ProdZest.Api.Domain.Dtos.Category;
+using ProdZest.Api.Domain.Dtos.Category.List;
+using ProdZest.Api.Domain.Dtos.Paginacao;
+using ProdZest.Api.Domain.Dtos.Paginacao.Filter;
 using ProdZest.Api.Domain.Entities;
 using ProdZest.Api.Domain.Interfaces.Repository;
 using ProdZest.Api.Domain.Interfaces.Service;
@@ -11,9 +15,9 @@ public class CategoryService : ICategoryService
     private readonly ICategoryRepository _categoryRepository;
     private readonly IMapper _mapper;
     private readonly IValidator<Category> _validator;
-    public CategoryService(ICategoryRepository CategoryRepository, IMapper mapper, IValidator<Category> validator)
+    public CategoryService(ICategoryRepository categoryRepository, IMapper mapper, IValidator<Category> validator)
     {
-        _categoryRepository = CategoryRepository;
+        _categoryRepository = categoryRepository;
         _mapper = mapper;
         _validator = validator;
     }
@@ -49,6 +53,15 @@ public class CategoryService : ICategoryService
     {
         var result = _categoryRepository.GetAllAsync(predicate);
         return result;
+    }
+
+    public async Task<PagedResponse<IEnumerable<CategoryResponseList>>> GetAllCategoriesAsync(FiltroPaginacao filtroPaginacao, CategoryRequest requestDto)
+    {
+        _ = requestDto ?? throw new ArgumentNullException(nameof(requestDto));
+
+        var result = await _categoryRepository.GetAllCategoriesAsync(filtroPaginacao, requestDto);
+
+        return _mapper.Map<PagedResponse<IEnumerable<CategoryResponseList>>>(result);
     }
 
     public Task<Category> GetAsync(Expression<Func<Category, bool>> predicate)

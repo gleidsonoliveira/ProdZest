@@ -10,3 +10,7 @@
 /src/ProdZest.Api/ProdZest.Api.Domain/bin/Debug/net6.0
 /src/ProdZest.Api/ProdZest.Api.Domain/obj
 /src/ProdZest.Api/ProdZest.Api.Service/obj
+/src/ProdZest.Api/.vs/ProjectEvaluation
+/src/ProdZest.Api/ProdZest.Api.Service/bin/Debug/net6.0
+/src/ProdZest.Api/ProdZest.Api.WebApi/bin/Debug/net6.0
+/src/ProdZest.Api/ProdZest.Api.WebApi/obj

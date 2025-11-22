@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdZest.Api.Data", "ProdZe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdZest.Api.CrossCutting", "ProdZest.Api.CrossCutting\ProdZest.Api.CrossCutting.csproj", "{E649AD75-48E0-49B4-A353-C748CD7EC58E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdZest.Api.WebApi", "ProdZest.Api.WebApi\ProdZest.Api.WebApi.csproj", "{EEA077AD-102D-4251-9978-19811FE7B9BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E649AD75-48E0-49B4-A353-C748CD7EC58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E649AD75-48E0-49B4-A353-C748CD7EC58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E649AD75-48E0-49B4-A353-C748CD7EC58E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA077AD-102D-4251-9978-19811FE7B9BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA077AD-102D-4251-9978-19811FE7B9BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA077AD-102D-4251-9978-19811FE7B9BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA077AD-102D-4251-9978-19811FE7B9BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

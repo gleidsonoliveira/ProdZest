@@ -12,11 +12,10 @@ public class CategoryMap : IEntityTypeConfiguration<Category>
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Description).IsRequired().HasMaxLength(100);
 
-
-        //Relacionamento 1:N Category - Products
+        //Relacionamento
         builder.HasMany(u => u.Products)
                .WithOne(p => p.Category)
                .HasForeignKey(p => p.CategoryId)
-               .OnDelete(DeleteBehavior.Cascade);   
+               .OnDelete(DeleteBehavior.Cascade);
     }
 }

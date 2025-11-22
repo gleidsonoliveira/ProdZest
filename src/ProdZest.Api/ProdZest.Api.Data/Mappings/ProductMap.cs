@@ -19,5 +19,8 @@ public class ProductMap : IEntityTypeConfiguration<Product>
 
         //Enum
         builder.Property(u => u.Situation).IsRequired().HasDefaultValueSql("0");
+
+        //Relacionamento
+        builder.HasOne(u => u.Category).WithMany(c => c.Products).HasForeignKey(u => u.CategoryId);
     }
 }
