@@ -22,13 +22,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
   itemsPerPage: number = 50;
   loading: boolean = false;
   error: string = '';
-  
+
   private destroy$ = new Subject<void>();
 
   constructor(
     private productService: ProductService,
-    private router: Router
-  ) {}
+    private router: Router) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -42,7 +41,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   loadProducts(page: number = 1): void {
     this.loading = true;
     this.error = '';
-    
+
     this.productService.getProducts(page, this.itemsPerPage)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
@@ -63,7 +62,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   onPageChange(page: number): void {
     debugger
-    console.log('Page change requested:', page);
     if (page >= 1 && page <= this.totalPages) {
       this.loadProducts(page);
     }
@@ -78,7 +76,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   onDelete(product: Product): void {
     debugger
     if (!product.id) return;
-    
+
     if (confirm(`Tem certeza que deseja excluir o produto "${product.description}"?`)) {
       this.productService.deleteProduct(product.id)
         .pipe(takeUntil(this.destroy$))
@@ -88,7 +86,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             this.error = 'Erro ao excluir produto. Por favor, tente novamente.';
-            console.error('Error deleting product:', error);
           }
         });
     }

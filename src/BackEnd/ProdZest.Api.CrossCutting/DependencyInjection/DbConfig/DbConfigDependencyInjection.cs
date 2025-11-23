@@ -22,7 +22,7 @@ public static class DbConfigDependencyInjection
 
             //Adiciona os produtos no banco de dados
 
-            for (int i = 1; i < 10000; i++)
+            for (int i = 1; i < 10; i++)
             {
                 context.Product.Add(new Product
                 {

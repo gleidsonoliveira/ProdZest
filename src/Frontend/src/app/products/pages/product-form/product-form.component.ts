@@ -130,6 +130,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         });
     }
 
+    // Validação da descrição do produto
     get description() {
         return this.productForm.get('description');
     }

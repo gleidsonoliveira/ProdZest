@@ -15,10 +15,11 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
+    //Função para chamar a api de obter produtos com paginação
     getProducts(page: number = 1, itemsPerPage: number = 50): Observable<ProductResponse> {
         debugger
 
-        console.log('Pagina:', page, 'Itens por pagina:', itemsPerPage);
+        console.log('Página:', page, 'Itens por página:', itemsPerPage);
 
         const params = new HttpParams()
             .set('pageNumber', page.toString())

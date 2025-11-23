@@ -26,12 +26,12 @@
                             </label>
                             <input type="text" class="form-control" id="description" formControlName="description"
                                 [class.is-invalid]="isDescriptionInvalid" placeholder="Digite a descrição do produto"
-                                maxlength="200" />
+                                maxlength="100" />
                             <div class="invalid-feedback" *ngIf="isDescriptionInvalid">
                                 {{ descriptionErrorMessage }}
                             </div>
                             <div class="form-text">
-                                Mínimo 3 caracteres, máximo 200 caracteres.
+                                Mínimo 3 caracteres, máximo 100 caracteres.
                             </div>
                         </div>
 
@@ -41,6 +41,7 @@
                             </label>
                             <input type="number" class="form-control" id="unitPrice" formControlName="unitPrice"
                                 placeholder="Digite o preço por unidade" step="0.01" min="0" />
+                            
                             <div class="form-text">
                                 Insira um valor numérico positivo.
                             </div>
@@ -74,7 +75,7 @@
                             <button type="submit" class="btn btn-primary" [disabled]="loading || productForm.invalid">
                                 <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"
                                     aria-hidden="true"></span>
-                                {{ isEditMode ? 'Atualizar' : 'Criar' }}
+                                {{ isEditMode ? 'Atualizar' : 'Salvar' }}
                             </button>
                         </div>
                     </form>
