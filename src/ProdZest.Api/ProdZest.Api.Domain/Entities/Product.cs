@@ -9,6 +9,6 @@ public class Product : EntityBase
     public int StockQuantity { get; set; }
 
     //Reference
-    public int CategoryId { get; set; }
+    public long CategoryId { get; set; }
     public Category Category { get; set; }
 }

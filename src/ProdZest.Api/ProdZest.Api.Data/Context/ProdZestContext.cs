@@ -7,8 +7,8 @@ public class ProdZestContext : DbContext
 {
     public ProdZestContext(DbContextOptions<ProdZestContext> opcoes) : base(opcoes) { }
 
-    DbSet<Product> Product { get; set; }
-    DbSet<Category> Category { get; set; }
+    public DbSet<Product> Product { get; set; }
+    public DbSet<Category> Category { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

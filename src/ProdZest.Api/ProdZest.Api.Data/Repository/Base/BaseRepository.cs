@@ -1,30 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProdZest.Api.Data.Context;
+using ProdZest.Api.Domain.Entities.Base;
+using ProdZest.Api.Domain.Enum;
 using ProdZest.Api.Domain.Interfaces.Repository.Base;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace ProdZest.Api.Data.Repository.Base;
 public abstract class BaseRepository<TEntity> : IRepositoryBase<TEntity> where TEntity : class
 {
     protected readonly ProdZestContext _prodZestContext;
-    protected readonly DbSet<TEntity> DbSet;
+    protected readonly DbSet<TEntity> _dbSet;
 
-    public BaseRepository(ProdZestContext prodZestContext)
+    protected BaseRepository(ProdZestContext prodZestContext)
     {
         _prodZestContext = prodZestContext;
-        DbSet = prodZestContext.Set<TEntity>();
+        _dbSet = prodZestContext.Set<TEntity>();
     }
 
     public virtual async Task<TEntity> AddAsync(TEntity entity)
     {
-        await _prodZestContext.Set<TEntity>().AddAsync(entity);
+        await _dbSet.AddAsync(entity);
         await _prodZestContext.SaveChangesAsync();
         return entity;
     }
 
     public virtual async Task AddRangeAsync(IList<TEntity> entity)
     {
-        await DbSet.AddRangeAsync(entity);
+        await _dbSet.AddRangeAsync(entity);
     }
 
     public async Task<TEntity> Delete(long Id)
@@ -48,6 +51,14 @@ public abstract class BaseRepository<TEntity> : IRepositoryBase<TEntity> where T
         _prodZestContext.Set<TEntity>().Remove(entity);
         await _prodZestContext.SaveChangesAsync();
 
+        return entity;
+    }
+    public async Task<TEntity> DeleteAsync(TEntity entity)
+    {
+        _ = entity ?? throw new ArgumentNullException(nameof(entity));
+
+        _prodZestContext.Entry(entity).State = EntityState.Modified;
+        await _prodZestContext.SaveChangesAsync();
         return entity;
     }
 
@@ -74,11 +85,18 @@ public abstract class BaseRepository<TEntity> : IRepositoryBase<TEntity> where T
         return entity;
     }
 
-    public async Task UpdateRangeAsync(IEnumerable<TEntity> models)
+    public async Task UpdateRangeAsync(IEnumerable<TEntity> entities)
     {
-        if (models == null)
-            throw new ArgumentNullException(nameof(models));
+        _ = entities ?? throw new ArgumentNullException(nameof(entities));
 
-        DbSet.UpdateRange(models);
+        var updateEntities = new List<TEntity>();
+        foreach (var entity in entities)
+        {
+            _prodZestContext.Entry(entity).State = EntityState.Modified;
+            updateEntities.Add(entity);
+        }
+
+        _dbSet.UpdateRange(updateEntities);
+        await _prodZestContext.SaveChangesAsync();
     }
 }

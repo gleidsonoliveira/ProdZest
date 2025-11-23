@@ -6,7 +6,7 @@ public static class ValidatorsDependencyInjection
 {
     public static IServiceCollection AddValidators(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssemblyContaining(typeof(ProductValidator));
+        services.AddValidatorsFromAssemblyContaining<ProductValidator>();
         return services;
     }
 }

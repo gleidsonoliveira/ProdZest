@@ -2,8 +2,7 @@
 using FluentValidation;
 using ProdZest.Api.Domain.Dtos.Category;
 using ProdZest.Api.Domain.Dtos.Category.List;
-using ProdZest.Api.Domain.Dtos.Paginacao;
-using ProdZest.Api.Domain.Dtos.Paginacao.Filter;
+using ProdZest.Api.Domain.Dtos.Pagination;
 using ProdZest.Api.Domain.Entities;
 using ProdZest.Api.Domain.Interfaces.Repository;
 using ProdZest.Api.Domain.Interfaces.Service;
@@ -15,7 +14,9 @@ public class CategoryService : ICategoryService
     private readonly ICategoryRepository _categoryRepository;
     private readonly IMapper _mapper;
     private readonly IValidator<Category> _validator;
-    public CategoryService(ICategoryRepository categoryRepository, IMapper mapper, IValidator<Category> validator)
+    public CategoryService(ICategoryRepository categoryRepository,
+        IMapper mapper,
+        IValidator<Category> validator)
     {
         _categoryRepository = categoryRepository;
         _mapper = mapper;
@@ -39,9 +40,10 @@ public class CategoryService : ICategoryService
         return result;
     }
 
-    public Task<Category> DeleteAsync(Category entity)
+    public async Task<Category> DeleteAsync(Category entity)
     {
-        throw new NotImplementedException();
+        var result = await _categoryRepository.DeleteAsync(entity);
+        return result;
     }
 
     public Task DeleteRangeAsync(IList<Category> entities)
@@ -53,15 +55,6 @@ public class CategoryService : ICategoryService
     {
         var result = _categoryRepository.GetAllAsync(predicate);
         return result;
-    }
-
-    public async Task<PagedResponse<IEnumerable<CategoryResponseList>>> GetAllCategoriesAsync(FiltroPaginacao filtroPaginacao, CategoryRequest requestDto)
-    {
-        _ = requestDto ?? throw new ArgumentNullException(nameof(requestDto));
-
-        var result = await _categoryRepository.GetAllCategoriesAsync(filtroPaginacao, requestDto);
-
-        return _mapper.Map<PagedResponse<IEnumerable<CategoryResponseList>>>(result);
     }
 
     public Task<Category> GetAsync(Expression<Func<Category, bool>> predicate)
@@ -85,5 +78,16 @@ public class CategoryService : ICategoryService
     public async Task UpdateRangeAsync(IEnumerable<Category> entity)
     {
         await _categoryRepository.UpdateRangeAsync(entity);
+    }
+
+    public async Task<PagedListDto<CategoryResponseList>> GetAllCategoriesAsync(CategoryRequest requestDto)
+    {
+        _ = requestDto ?? throw new ArgumentNullException(nameof(requestDto));
+
+        var result = await _categoryRepository.GetAllCategoriesAsync(requestDto);
+
+        IEnumerable<CategoryResponseList> applicationsResponseDto = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryResponseList>>(result);
+
+        return new PagedListDto<CategoryResponseList>(applicationsResponseDto, requestDto.PageNumber, requestDto.PageSize, result.TotalCount);
     }
 }

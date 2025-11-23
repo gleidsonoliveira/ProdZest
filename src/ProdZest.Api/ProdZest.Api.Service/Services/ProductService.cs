@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using ProdZest.Api.Domain.Dtos.Pagination;
+using ProdZest.Api.Domain.Dtos.Product;
+using ProdZest.Api.Domain.Dtos.Product.List;
 using ProdZest.Api.Domain.Entities;
 using ProdZest.Api.Domain.Interfaces.Repository;
 using ProdZest.Api.Domain.Interfaces.Service;
@@ -11,7 +14,9 @@ public class ProductService : IProductService
     private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
     private readonly IValidator<Product> _validator;
-    public ProductService(IProductRepository productRepository, IMapper mapper, IValidator<Product> validator)
+    public ProductService(IProductRepository productRepository,
+        IMapper mapper,
+        IValidator<Product> validator)
     {
         _productRepository = productRepository;
         _mapper = mapper;
@@ -34,9 +39,10 @@ public class ProductService : IProductService
         return result;
     }
 
-    public Task<Product> DeleteAsync(Product entity)
+    public async Task<Product> DeleteAsync(Product entity)
     {
-        throw new NotImplementedException();
+        var result = await _productRepository.DeleteAsync(entity);
+        return result;
     }
 
     public Task DeleteRangeAsync(IList<Product> entities)
@@ -71,5 +77,16 @@ public class ProductService : IProductService
     public async Task UpdateRangeAsync(IEnumerable<Product> entity)
     {
         await _productRepository.UpdateRangeAsync(entity);
+    }
+
+    public async Task<PagedListDto<ProductResponseListDto>> GetAllProductsAsync(ProductRequest requestDto)
+    {
+        _ = requestDto ?? throw new ArgumentNullException(nameof(requestDto));
+
+        var result = await _productRepository.GetAllProductsAsync(requestDto);
+
+        IEnumerable<ProductResponseListDto> ApplicationsResponseDto = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResponseListDto>>(result);
+
+        return new PagedListDto<ProductResponseListDto>(ApplicationsResponseDto, requestDto.PageNumber, requestDto.PageSize, result.TotalCount);
     }
 }

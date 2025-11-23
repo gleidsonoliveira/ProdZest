@@ -2,7 +2,7 @@
 using ProdZest.Api.Domain.Entities;
 
 namespace ProdZest.Api.CrossCutting.DependencyInjection.Validation;
-public class CategoryValidator : AbstractValidator<Product>
+public class CategoryValidator : AbstractValidator<Category>
 {
     public CategoryValidator()
     {

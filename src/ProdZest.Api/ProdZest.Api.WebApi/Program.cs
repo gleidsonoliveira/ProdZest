@@ -2,6 +2,9 @@ using ProdZest.Api.CrossCutting.DependencyInjection.AutoMapper;
 using ProdZest.Api.CrossCutting.DependencyInjection.DbConfig;
 using ProdZest.Api.CrossCutting.DependencyInjection.Repository;
 using ProdZest.Api.CrossCutting.DependencyInjection.Service;
+using ProdZest.Api.CrossCutting.DependencyInjection.Validation.Base;
+using ProdZest.Api.Data.Context;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,15 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+#region IOC
 builder.Services.AddMemoryDatabaseDependency(builder.Configuration);
 builder.Services.AddRepositoryDependency();
 builder.Services.AddServiceDependency();
 builder.Services.AddMapperConfiguration();
-
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddValidators();
+#endregion
 
 var app = builder.Build();
 
@@ -31,6 +36,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api Denso");
+    c.RoutePrefix = string.Empty;
+});
 
 app.MapControllers();
 
