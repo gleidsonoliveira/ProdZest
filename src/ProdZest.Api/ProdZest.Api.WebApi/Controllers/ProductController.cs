@@ -131,7 +131,7 @@ public class ProductController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete(Name = "delete-product")]
+    [HttpDelete]
     [SwaggerOperation(Summary = "Desativa um produto de acordo com a situação deleted.")]
     [ProducesResponseType(typeof(ProductResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -143,10 +143,7 @@ public class ProductController : ControllerBase
         {
             if (Id == 0)
                 return BadRequest("Registro não localizado.");
-
-            Product product = await _productService.GetByIdAsync(Id);
-            if (product is not null && product.Id > 0)
-                await _productService.DeleteAsync(product);
+                await _productService.DeleteAsync(Id);
         }
         catch (Exception ex)
         {

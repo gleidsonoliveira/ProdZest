@@ -35,26 +35,22 @@ public static class DbConfigDependencyInjection
             );
 
             //Adiciona os produtos no banco de dados
-            context.Product.AddRange(
-                new Product
+
+            for (int i = 1; i < 10000; i++)
+            {
+                context.Product.Add(new Product
                 {
-                    Id = 1,
-                    Description = "Produto A",
-                    UnitPrice = 10.00m,
-                    GrossPrice = 12.00m,
-                    StockQuantity = 100,
-                    CategoryId = 1
-                },
-                new Product
-                {
-                    Id = 2,
-                    Description = "Produto B",
-                    UnitPrice = 20.00m,
-                    GrossPrice = 24.00m,
-                    StockQuantity = 200,
-                    CategoryId = 2
-                }
-            );
+                    Id = i,
+                    Description = $"Produto Extra {i + 1}",
+                    UnitPrice = 15.00m + i,
+                    GrossPrice = 18.00m + i,
+                    StockQuantity = 50 + i,
+                    CategoryId = (i % 2) + 1
+                });
+            }
+
+
+           
             context.SaveChanges();
         }
         #endregion
