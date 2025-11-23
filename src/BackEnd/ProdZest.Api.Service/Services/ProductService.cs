@@ -24,6 +24,7 @@ public class ProductService : IProductService
     }
     public async Task<Product> AddAsync(Product entity)
     {
+        entity.Active = true;
         var result = await _productRepository.AddAsync(entity);
         return result;
     }
