@@ -28,14 +28,17 @@ export class ProductService {
         );
     }
 
+    //Função para chamar a api de obter produto por id
     getProductById(id: number): Observable<Product> {
-        return this.http.get<Product>(`${this.apiUrl}/${id}`).pipe(
+        debugger
+        let url = `${this.apiUrl}/get-product?Id=${id}`;
+        return this.http.get<Product>(url).pipe(
             tap(product => console.log('Product loaded:', product)),
             catchError(this.handleError)
         );
     }
 
-    //função para chamar a api de criar produto
+    //Função para chamar a api de criar produto
     createProduct(product: Product): Observable<Product> {
         debugger
         return this.http.post<Product>(this.apiUrl, product).pipe(
@@ -47,7 +50,7 @@ export class ProductService {
         );
     }
 
-    //função para chamar a api de atualizar produto
+    //Função para chamar a api de atualizar produto
     updateProduct(id: number, product: Product): Observable<Product> {
         debugger
         let url = `${this.apiUrl}?Id=${id}`;
@@ -60,7 +63,7 @@ export class ProductService {
         );
     }
 
-    //função para chamar a api de deletar produto
+    //Função para chamar a api de deletar produto
     deleteProduct(id: number): Observable<void> {
 
         let url = `${this.apiUrl}?Id=${id}`;
