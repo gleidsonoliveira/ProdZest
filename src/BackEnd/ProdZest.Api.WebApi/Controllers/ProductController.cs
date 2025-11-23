@@ -8,7 +8,6 @@ using ProdZest.Api.Domain.Entities;
 using ProdZest.Api.Domain.Interfaces.Service;
 using Serilog;
 using Swashbuckle.AspNetCore.Annotations;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ProdZest.Api.WebApi.Controllers;
 [ApiController]

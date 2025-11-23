@@ -1,5 +1,5 @@
 ﻿namespace ProdZest.Api.Domain.Dtos.Product;
-public record  ProductUpdateRequestDto(
+public record ProductUpdateRequestDto(
     string Description,
     decimal UnitPrice,
     decimal GrossPrice,

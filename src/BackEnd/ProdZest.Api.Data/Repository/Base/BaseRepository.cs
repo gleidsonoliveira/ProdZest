@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProdZest.Api.Data.Context;
-using ProdZest.Api.Domain.Entities.Base;
-using ProdZest.Api.Domain.Enum;
 using ProdZest.Api.Domain.Interfaces.Repository.Base;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace ProdZest.Api.Data.Repository.Base;

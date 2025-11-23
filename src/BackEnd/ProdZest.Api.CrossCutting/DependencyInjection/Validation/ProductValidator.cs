@@ -11,8 +11,6 @@ public class ProductValidator : AbstractValidator<Product>
         .MinimumLength(50).WithMessage("O campo descrição deve ter no mínimo 50 caracteres")
         .NotEmpty().WithMessage("O campo descrição não pode ser vazio");
 
-        RuleFor(c => c.CategoryId).GreaterThan(0).WithMessage("É necessário atribuir o Id da categoria.");
-
         RuleFor(x => x.UnitPrice).GreaterThan(0).LessThanOrEqualTo(9999.99m);
 
         RuleFor(x => x.UnitPrice)

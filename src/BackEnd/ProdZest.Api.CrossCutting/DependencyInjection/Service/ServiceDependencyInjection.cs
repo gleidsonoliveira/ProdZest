@@ -8,7 +8,6 @@ public static class ServiceDependencyInjection
     public static IServiceCollection AddServiceDependency(this IServiceCollection services)
     {
         services.AddScoped<IProductService, ProductService>();
-        services.AddScoped<ICategoryService, CategoryService>();
         return services;
     }
 }

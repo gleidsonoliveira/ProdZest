@@ -7,8 +7,5 @@ public class Product : EntityBase
     public decimal UnitPrice { get; set; }
     public decimal GrossPrice { get; set; }
     public int StockQuantity { get; set; }
-
-    //Reference
-    public long CategoryId { get; set; }
-    public Category Category { get; set; }
+    public bool Active { get; set; }
 }

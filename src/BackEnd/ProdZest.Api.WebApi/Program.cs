@@ -3,8 +3,6 @@ using ProdZest.Api.CrossCutting.DependencyInjection.DbConfig;
 using ProdZest.Api.CrossCutting.DependencyInjection.Repository;
 using ProdZest.Api.CrossCutting.DependencyInjection.Service;
 using ProdZest.Api.CrossCutting.DependencyInjection.Validation.Base;
-using ProdZest.Api.Data.Context;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 

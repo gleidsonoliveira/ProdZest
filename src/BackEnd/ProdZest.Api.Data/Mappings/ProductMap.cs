@@ -7,7 +7,7 @@ public class ProductMap : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.ToTable("Product");
+        builder.ToTable("Tb_Product");
 
         builder.HasKey(u => u.Id);
 
@@ -15,12 +15,6 @@ public class ProductMap : IEntityTypeConfiguration<Product>
         builder.Property(u => u.UnitPrice).IsRequired().HasColumnType("decimal(18,2)");
         builder.Property(u => u.UnitPrice).IsRequired().HasColumnType("decimal(18,2)");
         builder.Property(u => u.StockQuantity).IsRequired();
-        builder.Property(u => u.Observation).HasMaxLength(2000);
-
-        //Enum
-        builder.Property(u => u.Situation).IsRequired().HasDefaultValueSql("0");
-
-        //Relacionamento
-        builder.HasOne(u => u.Category).WithMany(c => c.Products).HasForeignKey(u => u.CategoryId);
+        builder.Property(u => u.Active).IsRequired();
     }
 }

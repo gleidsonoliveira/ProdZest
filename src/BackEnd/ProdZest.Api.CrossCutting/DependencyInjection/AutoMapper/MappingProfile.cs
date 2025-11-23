@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ProdZest.Api.Domain.Dtos.Category;
 using ProdZest.Api.Domain.Dtos.Product;
 using ProdZest.Api.Domain.Dtos.Product.List;
 using ProdZest.Api.Domain.Entities;
@@ -15,7 +14,5 @@ public class MappingProfile : Profile
         CreateMap<Product, ProductRequestDto>().ReverseMap();
         CreateMap<Product, ProductResponseDto>().ReverseMap();
         CreateMap<Product, ProductUpdateRequestDto>().ReverseMap();
-
-        CreateMap<Category, CategoryRequest>().ReverseMap();
     }
 }

@@ -20,20 +20,6 @@ public static class DbConfigDependencyInjection
         {
             var context = serviceProvider.GetRequiredService<ProdZestContext>();
 
-            //Adiciona as categorias no banco de dados
-            context.Category.AddRange(
-                new Category
-                {
-                    Id = 1,
-                    Description = "Categoria A"
-                },
-                new Category
-                {
-                    Id = 2,
-                    Description = "Categoria B"
-                }
-            );
-
             //Adiciona os produtos no banco de dados
 
             for (int i = 1; i < 10000; i++)
@@ -45,12 +31,10 @@ public static class DbConfigDependencyInjection
                     UnitPrice = 15.00m + i,
                     GrossPrice = 18.00m + i,
                     StockQuantity = 50 + i,
-                    CategoryId = (i % 2) + 1
+                    Active = true
                 });
             }
 
-
-           
             context.SaveChanges();
         }
         #endregion
