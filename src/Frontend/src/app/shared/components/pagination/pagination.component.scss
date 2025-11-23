@@ -1,0 +1,13 @@
+.pagination {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  
+  .page-link {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .page-item.disabled .page-link {
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,69 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Produtos</h1>
+        <button class="btn btn-primary" (click)="onCreate()">
+            <i class="bi bi-plus-circle"></i> Novo Produto
+        </button>
+    </div>
+
+    <!-- Error Alert -->
+    <div class="alert alert-danger" *ngIf="error" role="alert">
+        {{ error }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="text-center my-5" *ngIf="loading">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
+
+    <!-- Products Table -->
+    <div class="card" *ngIf="!loading">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Preço por Unidade</th>
+                            <th scope="col">Preço Bruto</th>
+                            <th scope="col">Quantidade em Estoque</th>
+                            <th scope="col" class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products; let i = index">
+                            <th scope="row">{{ product.id }}</th>
+                            <td>{{ product.description }}</td>
+                            <td>{{ product.unitPrice }}</td>
+                            <td>{{ product.grossPrice }}</td>
+                            <td>{{ product.stockQuantity }}</td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-primary me-2" (click)="onEdit(product)"
+                                    title="Editar">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger" (click)="onDelete(product)"
+                                    title="Excluir">
+                                    <i class="bi bi-trash"></i> Excluir
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="products.length === 0">
+                            <td colspan="3" class="text-center text-muted py-4">
+                                Nenhum produto encontrado.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <app-pagination *ngIf="!loading && products.length > 0" [currentPage]="currentPage" [totalPages]="totalPages"
+        [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChange)="onPageChange($event)">
+    </app-pagination>
+</div>

@@ -64,7 +64,7 @@ public class ProductController : ControllerBase
         }
     }
 
-    [HttpPost(Name = "create-product")]
+    [HttpPost]
     [SwaggerOperation(Summary = "Cria um produto.")]
     [ProducesResponseType(typeof(ProductResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -94,7 +94,7 @@ public class ProductController : ControllerBase
         return Ok();
     }
 
-    [HttpPut(Name = "update-product")]
+    [HttpPut]
     [SwaggerOperation(Summary = "Atualiza o produto.")]
     [ProducesResponseType(typeof(ProductResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -143,7 +143,8 @@ public class ProductController : ControllerBase
         {
             if (Id == 0)
                 return BadRequest("Registro não localizado.");
-                await _productService.DeleteAsync(Id);
+
+            await _productService.DeleteAsync(Id);
         }
         catch (Exception ex)
         {

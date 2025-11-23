@@ -14,3 +14,14 @@
 /src/ProdZest.Api/ProdZest.Api.Service/bin/Debug/net6.0
 /src/ProdZest.Api/ProdZest.Api.WebApi/bin/Debug/net6.0
 /src/ProdZest.Api/ProdZest.Api.WebApi/obj
+/src/BackEnd/.vs/ProdZest.Api
+/src/BackEnd/ProdZest.Api.CrossCutting/bin/Debug/net6.0
+/src/BackEnd/ProdZest.Api.CrossCutting/obj
+/src/BackEnd/ProdZest.Api.Data/bin/Debug/net6.0
+/src/BackEnd/ProdZest.Api.Data/obj
+/src/BackEnd/ProdZest.Api.Domain/bin/Debug/net6.0
+/src/BackEnd/ProdZest.Api.Domain/obj
+/src/BackEnd/ProdZest.Api.Service/bin/Debug/net6.0
+/src/BackEnd/ProdZest.Api.Service/obj
+/src/BackEnd/ProdZest.Api.WebApi/bin/Debug/net6.0
+/src/BackEnd/ProdZest.Api.WebApi/obj
