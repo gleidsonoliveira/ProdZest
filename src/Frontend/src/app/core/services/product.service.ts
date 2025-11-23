@@ -16,9 +16,13 @@ export class ProductService {
     constructor(private http: HttpClient) { }
 
     getProducts(page: number = 1, itemsPerPage: number = 50): Observable<ProductResponse> {
+        debugger
+
+        console.log('Pagina:', page, 'Itens por pagina:', itemsPerPage);
+
         const params = new HttpParams()
-            .set('page', page.toString())
-            .set('itemsPerPage', itemsPerPage.toString());
+            .set('pageNumber', page.toString())
+            .set('pageSize', itemsPerPage.toString());
 
         return this.http.get<ProductResponse>(this.apiUrl, { params }).pipe(
             tap(response => {

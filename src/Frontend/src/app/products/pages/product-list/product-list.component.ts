@@ -62,6 +62,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(page: number): void {
+    debugger
     console.log('Page change requested:', page);
     if (page >= 1 && page <= this.totalPages) {
       this.loadProducts(page);
