@@ -7,4 +7,4 @@ Desafio Técnico – Desenvolvedor(a) Full Stack (.NET + Angular)
 
 🛠 Requisitos: - Backend: .NET 6+, Entity Framework, boas práticas (SOLID, Clean Code). - Frontend: Angular 12+, RxJS, formulários reativos, consumo de API. 
 
-📦 Entrega: Suba o projeto em um repositório público no GitHub e envie o link..
+📦 Entrega: Suba o projeto em um repositório público no GitHub e envie o link.
